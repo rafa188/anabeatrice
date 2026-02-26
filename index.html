@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Beatrice | Portfolio & Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --accent: #b5835a; /* Tom de dourado mais escuro para melhor contraste */
+            --soft-bg: #fdfaf6;
+            --dark: #0f0f0f;
+            --text-muted: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--soft-bg);
+            color: var(--dark);
+            overflow-x: hidden;
+            width: 100%;
+            line-height: 1.6;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Melhorando a legibilidade dos títulos grandes */
+        h1, h2 {
+            color: var(--dark);
+            letter-spacing: -0.02em;
+        }
+
+        /* Animações de entrada */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efeito de zoom na imagem */
+        .img-container {
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .img-container img {
+            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Header com contraste reforçado */
+        .glass-header {
+            background: rgba(253, 250, 246, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* Detalhe de linha mais visível */
+        .line-detail {
+            height: 2px;
+            background: var(--accent);
+            width: 50px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-anim { animation: float 6s ease-in-out infinite; }
+
+        /* Menu mobile melhorado */
+        #mobile-menu {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            background: var(--soft-bg);
+        }
+        #mobile-menu.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Overlay de contraste para links no hover */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#b5835a] selection:text-white">
+
+    <!-- Navegação -->
+    <nav class="fixed top-0 w-full z-[100] glass-header">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <div class="serif text-2xl md:text-3xl font-bold tracking-tighter text-black">Ana Beatrice.</div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-10 text-[11px] uppercase tracking-[0.25em] font-bold">
+                <a href="#inicio" class="nav-link hover:text-[#b5835a]">Início</a>
+                <a href="#sobre" class="nav-link hover:text-[#b5835a]">Sobre</a>
+                <a href="#portfolio" class="nav-link hover:text-[#b5835a]">Portfólio</a>
+                <a href="#contacto" class="bg-black text-white px-8 py-3 rounded-full hover:bg-[#b5835a] transition-all shadow-md active:scale-95">Contacto</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden p-2 text-black" id="menu-toggle" aria-label="Abrir Menu">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 top-0 flex flex-col items-center justify-center gap-10 text-center z-[110] md:hidden h-screen w-screen">
+            <button class="absolute top-6 right-6 p-2 text-black" id="menu-close">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <a href="#inicio" class="text-4xl serif font-bold mobile-link text-black">Início</a>
+            <a href="#sobre" class="text-4xl serif font-bold mobile-link text-black">Sobre</a>
+            <a href="#portfolio" class="text-4xl serif font-bold mobile-link text-black">Portfólio</a>
+            <a href="#contacto" class="text-4xl serif font-bold text-[#b5835a] mobile-link">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+            
+            <div class="md:col-span-7 z-10 text-center md:text-left order-2 md:order-1">
+                <div class="reveal active">
+                    <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+                        <div class="line-detail"></div>
+                        <span class="text-[12px] md:text-[13px] uppercase tracking-[0.4em] font-extrabold text-[#b5835a]">Modelo & Atriz</span>
+                    </div>
+                    
+                    <h1 class="serif text-[13vw] sm:text-7xl md:text-[6.5rem] lg:text-[8.5rem] leading-[0.9] font-bold mb-8 tracking-tighter text-black">
+                        Essência <br><span class="italic font-normal text-[#b5835a]">Nordestina</span>
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg md:text-xl text-gray-700 max-w-lg mx-auto md:mx-0 font-medium leading-relaxed mb-10 md:mb-14">
+                        A força da presença nordestina unida à versatilidade das artes cênicas e ao impacto visual da moda contemporânea.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-8">
+                        <a href="#portfolio" class="group flex items-center gap-5 font-bold uppercase tracking-widest text-[12px] text-black">
+                            EXPLORAR PORTFÓLIO 
+                            <span class="w-14 h-14 rounded-full border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 relative order-1 md:order-2 px-4 sm:px-10 md:px-0 mb-4 md:mb-0">
+                <div class="reveal active float-anim max-w-[420px] md:max-w-none mx-auto">
+                    <div class="img-container aspect-[3/4] shadow-2xl relative">
+                        <img src="pictures/foto1.jfif" alt="Ana Beatrice\foto1" class="w-full h-full object-cover">
+                        <!-- Overlay sutil para dar profundidade -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Selo flutuante com mais contraste -->
+                    <div class="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-white p-5 md:p-8 rounded-2xl shadow-2xl border border-gray-100 z-20">
+                        <p class="serif text-3xl md:text-5xl font-bold leading-none text-black">2026</p>
+                        <p class="text-[10px] md:text-[12px] uppercase tracking-[0.3em] font-bold text-[#b5835a] mt-2">New Season</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre / Manifesto -->
+    <section id="sobre" class="py-24 md:py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+                
+                <div class="reveal">
+                    <h2 class="serif text-5xl md:text-7xl mb-10 leading-tight text-black">Mais que um <br><span class="italic text-gray-400">rosto</span>, uma voz.</h2>
+                    <div class="space-y-8 text-gray-800 text-lg md:text-xl font-normal leading-relaxed">
+                        <p>
+                            Natural da Paraíba, Ana Beatrice carrega em si a força e a beleza do Nordeste. Com um percurso dedicado às <strong class="text-black font-bold border-b-2 border-[#b5835a]">Artes Cênicas</strong> e ao mundo da moda, ela traz para o set uma expressividade única e uma disciplina impecável.
+                        </p>
+                        <p>
+                            Especialista em campanhas de <span class="italic font-semibold">Beauty</span>, <span class="italic font-semibold">Lifestyle</span> e <span class="italic font-semibold">Fashion Editorials</span>, Ana comunica confiança e elegância natural em cada projeto que integra.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6 reveal">
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-8 md:p-12 rounded-[2rem] border border-gray-200 hover:border-[#b5835a] transition-colors shadow-sm">
+                            <i data-lucide="instagram" class="w-7 h-7 mb-5 text-[#b5835a]"></i>
+                            <h4 class="font-extrabold text-2xl md:text-3xl text-black">2.5k+</h4>
+                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-2">Seguidores</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 md:p-12 rounded-[2rem] border border-gray-200 hover:border-[#b5835a] transition-colors shadow-sm">
+                            <i data-lucide="clapperboard" class="w-7 h-7 mb-5 text-[#b5835a]"></i>
+                            <h4 class="font-extrabold text-2xl md:text-3xl text-black italic">Atriz</h4>
+                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-2">Teatro & Cinema</p>
+                        </div>
+                    </div>
+                    <div class="pt-10 md:pt-20 space-y-6">
+                        <div class="bg-gray-50 p-8 md:p-12 rounded-[2rem] border border-gray-200 hover:border-[#b5835a] transition-colors shadow-sm">
+                            <i data-lucide="sparkles" class="w-7 h-7 mb-5 text-[#b5835a]"></i>
+                            <h4 class="font-extrabold text-2xl md:text-3xl text-black">Beauty</h4>
+                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-2">Editoriais</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 md:p-12 rounded-[2rem] border border-gray-200 hover:border-[#b5835a] transition-colors shadow-sm">
+                            <i data-lucide="camera" class="w-7 h-7 mb-5 text-[#b5835a]"></i>
+                            <h4 class="font-extrabold text-2xl md:text-3xl text-black">Fashion</h4>
+                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-2">Campanhas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="portfolio" class="py-24 md:py-40 px-6 md:px-12 bg-[#f4f1ee]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 md:mb-32 reveal">
+                <span class="text-[12px] uppercase tracking-[0.6em] text-[#b5835a] font-extrabold mb-6 block">Obras & Ensaios</span>
+                <h2 class="serif text-5xl sm:text-6xl md:text-8xl mb-6 text-black">Portfólio</h2>
+                <div class="w-24 h-[3px] bg-black mx-auto"></div>
+            </div>
+
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
+                
+                <div class="reveal img-container group cursor-pointer bg-white p-3">
+                    <img src="pictures/foto2.jfif" alt="Editorial Beauty" class="w-full h-auto rounded-xl">
+                    <div class="mt-6 mb-2 px-2">
+                        <p class="serif text-2xl font-bold text-black">Editorial Beauty</p>
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#b5835a] mt-2">Fotografia Artística</p>
+                    </div>
+                </div>
+
+                <div class="reveal img-container group cursor-pointer bg-white p-3">
+                    <img src="pictures/foto3.jfif" alt="Fashion" class="w-full h-auto rounded-xl">
+                    <div class="mt-6 mb-2 px-2">
+                        <p class="serif text-2xl font-bold text-black">Fashion Lookbook</p>
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#b5835a] mt-2">Campanha Comercial</p>
+                    </div>
+                </div>
+
+                <div class="reveal img-container group cursor-pointer bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800" alt="Lifestyle" class="w-full h-auto rounded-xl">
+                    <div class="mt-6 mb-2 px-2">
+                        <p class="serif text-2xl font-bold text-black">Lifestyle Autêntico</p>
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#b5835a] mt-2">Retratos Urbanos</p>
+                    </div>
+                </div>
+
+                <div class="reveal img-container group cursor-pointer bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1481326329624-e930c2c00db2?auto=format&fit=crop&q=80&w=800" alt="Artes Cênicas" class="w-full h-auto rounded-xl">
+                    <div class="mt-6 mb-2 px-2">
+                        <p class="serif text-2xl font-bold text-black">Cenas & Atuação</p>
+                        <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-[#b5835a] mt-2">Performance Artística</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-32 md:py-56 bg-black text-white px-6 md:px-12 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="reveal">
+                <h2 class="serif text-6xl sm:text-8xl md:text-[9rem] leading-none mb-16 text-white">Vamos <br><span class="italic text-[#b5835a]">criar juntos?</span></h2>
+                <p class="text-lg md:text-2xl text-gray-300 font-medium mb-20 max-w-2xl mx-auto">
+                    Disponível para novos projetos publicitários, editoriais de moda e produções audiovisuais.
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <a href="https://wa.me/5583988387336" class="flex flex-col items-center p-10 md:p-14 border-2 border-white/10 rounded-[2.5rem] hover:border-[#b5835a] hover:bg-white/5 transition-all duration-500 group active:scale-95">
+                        <i data-lucide="message-square" class="w-8 h-8 md:w-10 md:h-10 mb-6 text-[#b5835a]"></i>
+                        <span class="text-[11px] uppercase tracking-[0.3em] mb-3 text-gray-500 font-bold">WhatsApp Direto</span>
+                        <span class="text-xl md:text-3xl font-bold">(83) 98838-7336</span>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/ana_teofilo_bazante16" target="_blank" class="flex flex-col items-center p-10 md:p-14 border-2 border-white/10 rounded-[2.5rem] hover:border-[#b5835a] hover:bg-white/5 transition-all duration-500 group active:scale-95">
+                        <i data-lucide="instagram" class="w-8 h-8 md:w-10 md:h-10 mb-6 text-[#b5835a]"></i>
+                        <span class="text-[11px] uppercase tracking-[0.3em] mb-3 text-gray-500 font-bold">Instagram</span>
+                        <span class="text-xl md:text-3xl font-bold">@ana_teofilo_bazante16</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-black border-t border-white/10 text-center px-6">
+        <p class="text-gray-500 text-[11px] uppercase tracking-[0.5em] font-bold">© 2026 Ana Beatrice • Portfólio Oficial</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.toggle('open');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
