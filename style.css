@@ -1,101 +1,130 @@
- :root {
-    --accent: #b5835a; /* Tom de dourado mais escuro para melhor contraste */
+:root {
+    --accent: #b5835a;
     --soft-bg: #fdfaf6;
     --dark: #0f0f0f;
     --text-muted: #4a4a4a;
- }
+}
 
- body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--soft-bg);
     color: var(--dark);
     overflow-x: hidden;
     width: 100%;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 .serif { font-family: 'Playfair Display', serif; }
 
-/* Melhorando a legibilidade dos títulos grandes */
- h1, h2 {
-    color: var(--dark);
-    letter-spacing: -0.02em;
-}
-
-/* Animações de entrada */
+/* Animações de entrada mais suaves */
 .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
-/* Efeito de zoom na imagem */
+
+/* Container de imagem com efeito refined */
 .img-container {
-     overflow: hidden;
+    overflow: hidden;
     border-radius: 1.5rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 .img-container img {
-    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .img-container:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
-    /* Header com contraste reforçado */
+/* Glassmorphism Header */
 .glass-header {
-    background: rgba(253, 250, 246, 0.95);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(253, 250, 246, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
-        /* Detalhe de linha mais visível */
 .line-detail {
-    height: 2px;
+    height: 1px;
     background: var(--accent);
-    width: 50px;
+    width: 60px;
 }
 
+/* Animação Flutuante */
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-15px); }
     100% { transform: translateY(0px); }
 }
 
 .float-anim { animation: float 6s ease-in-out infinite; }
 
-/* Menu mobile melhorado */
+/* Menu mobile Fullscreen */
 #mobile-menu {
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s ease;
-    background: var(--soft-bg)}
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    background: var(--soft-bg);
+    transform: translateX(100%);
+}
+
 #mobile-menu.open {
     opacity: 1;
     visibility: visible;
+    transform: translateX(0);
 }
 
-        /* Overlay de contraste para links no hover */
+/* Hover de links da navegação */
 .nav-link {
     position: relative;
     transition: color 0.3s ease;
 }
+
 .nav-link::after {
-     content: '';
-     position: absolute;
-     bottom: -4px;
-     left: 0;
-     width: 0%;
-     height: 2px;
-     background: var(--accent);
-     transition: width 0.3s ease;
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
 .nav-link:hover::after {
-     width: 100%;
+    width: 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--soft-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e0d8cf;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
 }
